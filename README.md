@@ -8,6 +8,23 @@ A chat application using Flask
 ### Light mode
 ![LightMode screenshot](https://github.com/AlexDevFlow/ChatApp/assets/107987666/06498827-31ca-4d77-91eb-322d089b1e57)
 
+# Features
+- **Network Connection**: Connect with people on the same network. 
+
+- **Message Response**: Have the ability to respond to transmitted messages.
+
+- **Customizable Usernames**: Each user can choose their own name.
+
+- **Light & Dark Mode**: Choose between light and dark mode based on your preference. 
+
+- **Double Click to Respond**: Simply double click to respond to a message.
+
+- **Side Menu**: A side menu for name and mode change.
+  
+- **File Attachment**: Attach not-so-large files to your messages.
+
+Please note that the application is continuously being improved and the mentioned features are not yet stable. More features will be added in future updates.
+
 # Install
 Clone the repo:
 ```bash
