@@ -1,0 +1,497 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-container {
+    width: 100%;
+    background: #4d4d4d;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.file-upload-label img:hover {
+    cursor: pointer;
+}
+
+.chat-header {
+    color: #fff;
+    text-align: center;
+    flex-shrink: 0;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid white;
+    height: 40px;
+}
+
+
+#send img {
+    width: auto;
+    max-width: 30px;
+}
+
+#username {
+    border: 2px solid white;
+    font-weight: bold;
+    color: cyan;
+    margin-left: 10px;
+}
+
+.file-upload-label img {
+    width: 30px;
+    padding-right: 20px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    background-color: #272727;
+    transition: 0.5s;
+}
+
+#reply-preview {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding-top: 15px;
+    display: none;
+    height: fit-content;
+    background-color: gray;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: 0.5s;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    flex-shrink: 0;
+    transition: 0.5s;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #272727;
+}
+
+.message-container {
+    display: flex;
+    align-items: center;
+    max-width: none;
+}
+
+.reply-button {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: rgba(17, 17, 17, 0.628);
+    border-radius: 100000px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.reply-image {
+    width: 30px;
+    height: 30px;
+}
+
+.message {
+    width: fit-content;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 40vw;
+    position: relative;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.message .username {
+    font-weight: bold;
+    color: cyan;
+}
+
+.message .text {
+    margin-top: 5px;
+}
+
+.message .time {
+    color: #999;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.message.right {
+    align-self: flex-end;
+    background-color: #1a344c;
+    color: white;
+}
+
+.message.left {
+    align-self: flex-start;
+    background-color: #21724f;
+    color: #fff;
+}
+
+.message.right .reply-button {
+    order: -1;
+
+}
+
+.message.left .reply-button {
+    order: 1;
+
+}
+
+.message-container.right {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    max-width: none;
+}
+
+.message-container.left {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    max-width: none;
+}
+
+.reply-message {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.reply-inner {
+    border-radius: 10px;
+    border-bottom: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #808080;
+}
+
+.reply-username {
+    font-weight: bold;
+    color: white;
+}
+
+.reply-text {
+    margin-top: 5px;
+}
+
+.my-reply {
+    margin-top: 5px;
+}
+
+.reply-time {
+    color: #999;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+input {
+    background-color: #272727;
+    color: #fff;
+    border: 1px solid;
+    outline: none;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#username {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.reply-inner-left {
+    background-color: #1a5740;
+    border-left: 5px solid white;
+}
+
+.reply-inner-right {
+    background-color: #142535;
+    border-left: 5px solid white;
+}
+
+#send {
+    margin-top: 10px;
+    background-color: #4d4d4d;
+    transition: 0.5s;
+}
+
+@media (max-width: 600px) {
+    .message {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 70%;
+        position: relative;
+        word-wrap: break-word;
+    }
+
+    .menu.open {
+        width: 30% !important;
+        border: none;
+    }
+
+    .chat-messages.open {
+        margin-left: 30%;
+    }
+
+    .chat-input.open {
+        margin-left: 30%;
+    }
+
+    .menu-bars {
+        font-size: 20px;
+        margin-left: 10px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    #username {
+        width: 70%;
+    }
+}
+
+.chat-messages {
+    transition: 0.5s;
+}
+
+.chat-input {
+    transition: 0.5s;
+}
+
+@media (max-width: 600px) {
+    .chat-messages.open {
+        margin-left: 30%;
+    }
+
+    .chat-input.open {
+        margin-left: 30%;
+    }
+
+    .menu.open {
+        width: 30% !important;
+    }
+
+    .reply-preview.open {
+        margin-left: 30%;
+    }
+}
+
+@media (min-width: 601px) {
+    .chat-messages.open {
+        margin-left: 250px;
+    }
+
+    .chat-input.open {
+        margin-left: 250px;
+    }
+
+    .reply-preview.open {
+        margin-left: 250px;
+    }
+}
+
+@media (max-width: 450px) {
+    .Light-Mode-title {
+        font-size: 10px;
+    }
+
+    .message {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 70%;
+        position: relative;
+        word-wrap: break-word;
+    }
+
+    .menu.open {
+        width: 30%;
+    }
+
+    .chat-messages.open {
+        margin-left: 30%;
+    }
+
+    .chat-input.open {
+        margin-left: 30%;
+    }
+
+    .menu-bars {
+        font-size: 20px;
+        margin-left: 10px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    #message {
+        width: 50%;
+        transition: 0.5s;
+    }
+
+    #username {
+        margin-left: 5px;
+        width: 70%;
+    }
+}
+
+.menu-bars {
+    order: 1;
+    font-size: 20px;
+    font-size: bolder;
+    margin-left: 20px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: #161616;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    overflow: auto;
+}
+
+.closebtn {
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: #bababa;
+}
+
+#cancel-reply {
+    text-align: right;
+    cursor: pointer;
+    color: white;
+    background-color: #4d4d4d;
+    width: fit-content;
+    border-radius: 100000px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+#remove-file {
+    padding: 10px;
+    height: 10px;
+    background-color: #142535;
+    border-radius: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    color: white;
+}
+
+#file-name {
+    margin-left: 15px;
+}
+
+.switch {
+    font-size: 17px;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 15px;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #d4acfb;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    left: 0.3em;
+    bottom: 0.3em;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked+.slider {
+    background: #b84fce;
+}
+
+.switch input:focus+.slider {
+    box-shadow: 0 0 1px #b84fce;
+}
+
+.switch input:checked+.slider:before {
+    transform: translateX(1.6em);
+    width: 2em;
+    height: 2em;
+    bottom: 0;
+}
+
+.Light-Mode-title {
+    color: white;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 15px;
+}
