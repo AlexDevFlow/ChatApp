@@ -131,6 +131,16 @@ body {
     cursor: pointer;
 }
 
+.message video{
+    width: 100%;
+    height: auto;
+}
+
+.message img {
+    width: 100%;
+    height: auto;
+}
+
 .message .username {
     font-weight: bold;
     color: cyan;
@@ -374,7 +384,6 @@ input {
 .menu-bars {
     order: 1;
     font-size: 20px;
-    font-size: bolder;
     margin-left: 20px;
     margin-top: 5px;
     cursor: pointer;
