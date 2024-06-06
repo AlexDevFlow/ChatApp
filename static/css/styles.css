@@ -32,7 +32,7 @@ body {
 }
 
 
-#send img {
+.send img {
     width: auto;
     max-width: 30px;
 }
@@ -77,7 +77,7 @@ body {
 
 .chat-input {
     display: flex;
-    padding: 10px;
+    padding: 20px;
     border-top: 1px solid #ddd;
     flex-shrink: 0;
     transition: 0.5s;
@@ -92,7 +92,7 @@ body {
 }
 
 .chat-input button {
-    padding: 10px 20px;
+    margin-right: 6px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -129,6 +129,16 @@ body {
     position: relative;
     word-wrap: break-word;
     cursor: pointer;
+}
+
+.message video{
+    width: 100%;
+    height: auto;
+}
+
+.message img {
+    width: 100%;
+    height: auto;
 }
 
 .message .username {
@@ -246,14 +256,47 @@ input {
     border-left: 5px solid white;
 }
 
+
+#send_button_span{
+    display: inline-flex;
+}
+
+
 #send {
     margin-top: 10px;
     background-color: #4d4d4d;
     transition: 0.5s;
+    width: auto;
+    max-width: 30px;
+}
+
+#terminate{
+    margin-top: 10px;
+    background-color: #4d4d4d;
+    transition: 0.5s;
+    width: auto;
+    max-width: 30px;
+}
+
+
+#terminate img{
+    width: auto;
+    max-width: 30px;
+}
+.responsive-audio{
+    width: 200px;
 }
 
 @media (max-width: 600px) {
-    .message {
+    .message .left{
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 60%;
+        position: relative;
+        word-wrap: break-word;
+    }
+    .message .right{
         margin-bottom: 15px;
         padding: 10px;
         border-radius: 10px;
@@ -261,7 +304,9 @@ input {
         position: relative;
         word-wrap: break-word;
     }
-
+    .responsive-audio{
+        width: 90%;
+    }
     .menu.open {
         width: 30% !important;
         border: none;
@@ -331,8 +376,15 @@ input {
     .Light-Mode-title {
         font-size: 10px;
     }
-
-    .message {
+    .message .right{
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 70%;
+        position: relative;
+        word-wrap: break-word;
+    }
+    .message .left{
         margin-bottom: 15px;
         padding: 10px;
         border-radius: 10px;
@@ -374,7 +426,6 @@ input {
 .menu-bars {
     order: 1;
     font-size: 20px;
-    font-size: bolder;
     margin-left: 20px;
     margin-top: 5px;
     cursor: pointer;

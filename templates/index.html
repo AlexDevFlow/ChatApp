@@ -33,24 +33,29 @@
         </div>
 
         <div id="reply-preview" class="reply-preview"></div>
-        <div class="chat-input" id="chat-input">
-            <div class="input-group">
-                <label for="file-input" class="file-upload-label"><img src="{{ url_for('static', filename='images/attached.png') }}" alt="Attach File"></label>
-                <input type="text" id="message" placeholder="Type a message">
-                <input type="file" id="file-input" style="display:none;">
-                <div id="file-info" style="display: none;">
-                    <span id="remove-file">X<span id="file-name"></span></span>
+        <!-- Add this within the chat-input div in your index.html -->
+            <div class="chat-input" id="chat-input">
+                <div class="input-group">
+                    <label for="file-input" class="file-upload-label" id="attach-file"><img src="{{ url_for('static', filename='images/attached.png') }}" alt="Attach File"></label>
+                    <input type="text" id="message" placeholder="Type a message">
+                    <input type="file" id="file-input" style="display:none;">
+                    <div id="file-info" style="display: none;">
+                        <span id="remove-file">X<span id="file-name"></span></span>
+                    </div>
+                    <progress id="upload-progress" value="0" max="100" style="display: none;"></progress>
                     
                 </div>
-
-                <progress id="upload-progress" value="0" max="100" style="display: none;"></progress>
-            </div>
-            <button id="send"><img src="{{ url_for('static', filename='images/send.png') }}" alt="Send"></button>
+                <span id="send_button_span"><button id="send" class = "send"><img src="{{ url_for('static', filename='images/record.png') }}" alt="Send"></button></span>
         </div>
+
     </div>
 
     <script>
         const replyImgUrl = "{{ url_for('static', filename='images/reply.png') }}";
+        const recordImgUrl = "{{ url_for('static', filename='images/record.png') }}";
+        const sendImgUrl = "{{ url_for('static', filename='images/send.png') }}";
+        const terminateImgUrl = "{{ url_for('static', filename='images/terminate_recording.png') }}";
+        const removeImgUrl = "{{ url_for('static', filename='images/remove_recording.png') }}";
     </script>
     
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
