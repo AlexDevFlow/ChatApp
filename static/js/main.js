@@ -17,15 +17,9 @@ if (!userId) {
 }
 
 function setUpAudio(){
-    
     if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
         console.log("Setup");
-        navigator.mediaDevices.getUserMedia(
-            
-            {audio:true}
-        )
-        .then(setUpStream)
-        .catch(err => {console.error(err)});
+        navigator.mediaDevices.getUserMedia({audio:true}).then(setUpStream).catch(err => {console.error(err)});
     }
 }
 
@@ -35,9 +29,7 @@ function setUpStream(stream) {
     recorder = new MediaRecorder(stream);
     let chunks = [];
 
-    recorder.ondataavailable = e => {
-        chunks.push(e.data);
-    };
+    recorder.ondataavailable = e => {chunks.push(e.data);};
 
     recorder.onstop = e => {
         const blob = new Blob(chunks, { type: 'audio/wav' });
@@ -45,23 +37,12 @@ function setUpStream(stream) {
         
         if(is_removed){
             is_removed = false;
-
-            if (document.getElementById("message").value.trim() === "") {
-                document.querySelector("#send img").src = recordImgUrl;
-            } else {
-                document.querySelector("#send img").src = sendImgUrl;
-            }
-
-            const sendGroup = document.getElementById("send_button_span");
-            const remove = sendGroup.querySelector("#terminate");
-            sendGroup.removeChild(remove);
-            
+            document.querySelector("#send img").src = (document.getElementById("message").value.trim() === "") ? recordImgUrl : sendImgUrl;
+            document.getElementById("send_button_span").removeChild(document.getElementById("send_button_span").querySelector("#terminate"));
             document.getElementById("send").click();
         }
         else{
-            const sendGroup = document.getElementById("send_button_span");
-            const remove = sendGroup.querySelector("#terminate");
-            sendGroup.removeChild(remove);
+            document.getElementById("send_button_span").removeChild(document.getElementById("send_button_span").querySelector("#terminate"));
             let username = document.getElementById("username").value || `User${userId}`;
             document.getElementById("username").value = username;
             const message = "";
@@ -111,11 +92,7 @@ function setUpStream(stream) {
                     sendNextChunk();
                 } else if (message) {
                     socket.send({ userId, username, message, time, reply: replyMessageContent });
-                    if (document.getElementById("message").value.trim() === "") {
-                        document.querySelector("#send img").src = recordImgUrl;
-                    } else {
-                        document.querySelector("#send img").src = sendImgUrl;
-                    }
+                    document.querySelector("#send img").src = (document.getElementById("message").value.trim() === "") ? recordImgUrl : sendImgUrl;
                     replyMessageContent = null;
                     updateReplyPreview(null);
                 }
@@ -200,29 +177,19 @@ document.getElementById("send").addEventListener("click", () => {
                             fileInput.value = "";
                             document.getElementById("file-info").style.display = "none";
                             document.getElementById("message").value = "";
-                            if (document.getElementById("message").value.trim() === "" && !is_recording) {
-                                document.querySelector("#send img").src = recordImgUrl;
-                            } else if(document.getElementById("message").value.trim() !== "" && !is_recording){
-                                document.querySelector("#send img").src = sendImgUrl;
-                            }
+                            document.querySelector("#send img").src = (document.getElementById("message").value.trim() === "" && !is_recording) ? recordImgUrl : (document.getElementById("message").value.trim() !== "" && !is_recording) ? sendImgUrl : document.querySelector("#send img").src;
                             replyMessageContent = null;
                             updateReplyPreview(null);
                         }
                     };
-                    reader.onerror = err => {
-                        console.error('File reading error:', err);
-                    };
+                    reader.onerror = err => {console.error('File reading error:', err);};
                     reader.readAsArrayBuffer(slice);
                 };
                 sendNextChunk();
             } else if (message) {
                 socket.send({ userId, username, message, time, reply: replyMessageContent });
                 document.getElementById("message").value = "";
-                if (document.getElementById("message").value.trim() === "" && !is_recording) {
-                    document.querySelector("#send img").src = recordImgUrl;
-                } else if(document.getElementById("message").value.trim() !== "" && !is_recording){
-                    document.querySelector("#send img").src = sendImgUrl;
-                }
+                document.querySelector("#send img").src = (document.getElementById("message").value.trim() === "" && !is_recording) ? recordImgUrl : (document.getElementById("message").value.trim() !== "" && !is_recording) ? sendImgUrl : document.querySelector("#send img").src;
                 replyMessageContent = null;
                 updateReplyPreview(null);
             }
@@ -473,11 +440,5 @@ function fetchPreviousMessages() {
 
 document.getElementById("message").addEventListener("input", () => {
     const messageInput = document.getElementById("message").value;
-    const sendButtonImg = document.querySelector("#send img");
-    const fileInput = document.getElementById("file-input");
-    if (messageInput.trim() === "" && !is_recording) {
-        sendButtonImg.src = recordImgUrl;
-    } else if(messageInput.trim() !== "" && !is_recording){
-        sendButtonImg.src = sendImgUrl;
-    }
+    document.querySelector("#send img").src = (messageInput.trim() === "" && !is_recording) ? recordImgUrl : (messageInput.trim() !== "" && !is_recording) ? sendImgUrl : none;
 });
